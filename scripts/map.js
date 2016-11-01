@@ -1,13 +1,13 @@
-d3.json("us.json", function(error, us) {
+d3.json("../data/us.json", function(error, us) {
   if (error) throw error;
 
-  d3.json("pollution_data.json", function(error, pollutant) {
+  d3.json("../data/pollution_data.json", function(error, pollutant) {
     if (error) throw error;
 
-    d3.csv("pollution_data_monthly.csv", function(error, heatData) {
+    d3.csv("../data/pollution_data_monthly.csv", function(error, heatData) {
       if (error) throw error;
       
-      d3.json("pollution_data.json", function(error, data){
+      d3.json("../data/pollution_data.json", function(error, data){
         if (error) throw error;
       
       //scroll sticky selector
@@ -218,10 +218,10 @@ d3.json("us.json", function(error, us) {
         var g = svg.append("g");
 
         var margin = { top: 70, right: 0, bottom: 100, left: 30 },
-                 heatWidth = 650 - margin.left - margin.right,
-                 heatHeight = 450 - margin.top - margin.bottom,
-                 gridSize = Math.floor(heatWidth / 12),
-                 legendElementWidth = gridSize;
+            heatWidth = 650 - margin.left - margin.right,
+            heatHeight = 450 - margin.top - margin.bottom,
+            gridSize = Math.floor(heatWidth / 12),
+            legendElementWidth = gridSize;
 
         var heatX = d3.time.scale().range([0, heatWidth]),
             heatY = d3.scale.linear().range([heatHeight, 0]);
@@ -281,7 +281,7 @@ d3.json("us.json", function(error, us) {
         var colorIdHeat = [-1, -0.5, 0, 0.5, 1, 5, 10];
         
         var legendHeat = heatgrid.selectAll(".legend")
-              .data([].concat(colorIdHeat), function(d) { return d; });
+            .data([].concat(colorIdHeat), function(d) { return d; });
         
         legendHeat.enter().append("g")
             .attr("class", "legend");
@@ -309,7 +309,7 @@ d3.json("us.json", function(error, us) {
         function update(year) {
           colorMap = d3.scale.linear()
                      .domain([-1, -0.5, 0.5, 10])
-                    .range(['#62b08d', '#F6F7B9','#d6616b', 'black']);
+                     .range(['#62b08d', '#F6F7B9','#d6616b', 'black']);
 
           g.selectAll("g").remove();
           

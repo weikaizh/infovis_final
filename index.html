@@ -6,269 +6,252 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>SI649 Group Project</title>
 	<link rel="icon" href="img/site_ico.ico" type="image/x-icon">
-	<link rel="stylesheet" href="style.css" media="all" />
 
 	<meta name = "viewport" content = "width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="styles/style.css" media="all" />
 
 	<!-- Google Font -->
 	<link href="http://fonts.googleapis.com/css?family=Raleway:400" rel="stylesheet" type="text/css">
 
 	<!-- D3 -->
-  <link href="build/nv.d3.css" rel="stylesheet" type="text/css">
-	<link href="map.css" rel="stylesheet" type="text/css">
+  	<link href="nvd3/nv.d3.css" rel="stylesheet" type="text/css">
+	
+	<link href="styles/map.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body class="vis">
-<a id = "00"></a>
-<!-- ======================================== -->
-<!-- HEADER-->
-<!-- ======================================== -->
+	<a id = "00"></a>
 
-<header id="main-header">
-	<div class="nav_bg">
-	<nav id="navigation">
+	<!-- ======================================== -->
+	<!-- HEADER-->
+	<!-- ======================================== -->
 
-	<div id="headline_tag">
-		<h1><span id="state_tag">U.S.</span></h1>
+	<header id="main-header">
+		<div class="nav_bg">
+			<nav id="navigation">
+
+				<div id="headline_tag">
+					<h1><span id="state_tag">U.S.</span></h1>
+				</div>
+				<div class="nav_links">
+					<ul style="display:inline-block">
+						<li><a href="#">Select State</a></li>
+
+						<select id="states" name="states" class="select-style">
+							<option value="0">U.S.</option>
+							<option value="1">Alabama</option>
+							<option value="2">Alaska</option>
+							<option value="4">Arizona</option>
+							<option value="5">Arkansas</option>
+							<option value="6">California</option>
+							<option value="8">Colorado</option>
+							<option value="9">Connecticut</option>
+							<option value="10">Delaware</option>
+							<option value="11">District of Columbia</option>
+							<option value="12">Florida</option>
+							<option value="13">Georgia</option>
+							<option value="15">Hawaii</option>
+							<option value="16">Idaho</option>
+							<option value="17">Illinois</option>
+							<option value="18">Indiana</option>
+							<option value="19">Iowa</option>
+							<option value="20">Kansas</option>
+							<option value="21">Kentucky</option>
+							<option value="22">Louisiana</option>
+							<option value="23">Maine</option>
+							<option value="24">Maryland</option>
+							<option value="25">Massachusetts</option>
+							<option value="26">Michigan</option>
+							<option value="27">Minnesota</option>
+							<option value="28">Mississippi</option>
+							<option value="29">Missouri</option>
+							<option value="30">Montana</option>
+							<option value="31">Nebraska</option>
+							<option value="32">Nevada</option>
+							<option value="33">New Hampshire</option>
+							<option value="34">New Jersey</option>
+							<option value="35">New Mexico</option>
+							<option value="36">New York</option>
+							<option value="37">North Carolina</option>
+							<option value="38">North Dakota</option>
+							<option value="39">Ohio</option>
+							<option value="40">Oklahoma</option>
+							<option value="41">Oregon</option>
+							<option value="42">Pennsylvania</option>
+							<option value="44">Rhode Island</option>
+							<option value="45">South Carolina</option>
+							<option value="46">South Dakota</option>
+							<option value="47">Tennessee</option>
+							<option value="48">Texas</option>
+							<option value="49">Utah</option>
+							<option value="50">Vermont</option>
+							<option value="51">Virginia</option>
+							<option value="53">Washington</option>
+							<option value="54">West Virginia</option>
+							<option value="55">Wisconsin</option>
+							<option value="56">Wyoming</option>
+						</select>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<!-- ======================================== -->
+	<!-- contents-->
+	<!-- ======================================== -->
+
+	<div id="contents" class="text-center">
+
+		<div id= "vis_display">
+			<div style="z-index: -999; position: fixed; top: 0"></div>
+			<div class="welcome">
+				<h1 class="homequote" style="color: #96cab3; font-weight: bold;">Visualizing Air Quality in U.S.</h1>
+				<p class="caption" style = "color: #a0a0a0; font-size: 1.5em" >Xinyu Sheng, Weikai Zhang, Mengtian Zhang</p>
+			</div>
+		</div>
+
+		<!-- ======================================== -->
+		<!-- CHART 1-->
+		<!-- ======================================== -->
+
+		<section id="overview">
+			<div class="content-container">
+
+				<div class="content-container">
+					<h1>All Pollutants in <strong class="linegraph_title">U.S.</strong></h1>
+				</div>
+				<div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+					The last ten years has witnessed the continuous improvement of air quality in the U.S. We measure the level of pollution by a certain pollutant’s percentage value above / below the National standard. 
+
+					<p style="margin-top: 1em">
+					On national average, almost all pollutants are under the national standard over the past ten years. Most pollutants are gradually decreasing through time (except PM10, which has an over 10% increase since 2009).
+					</p>
+
+					<p style="margin-top: 1em; color:#b9b9b9">
+					You can interact with the line graph to further explore the overview pollutant rate in specific states. Select the state in the selection box on the top right. Click on the legends to filter out sets of pollutants.
+					</p>
+				</div>
+
+				<div id="chart1" style="margin:0 auto; width:75%"></div>
+
+				<div class="main_text" style="width: 70%; margin: -1em auto 1.5em">
+					<p style="margin-top: 1em">
+					Down to the state level, we can see some prominent figures in pollution levels. For example, The annual average PM10 value in Texas reached over 220% above national standard, which was presumably due to the tornadoes raising particles in the air. Hawaii has prominent and highly variant SO2 rates, which results from the frequent volcanic activities specific to the region.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section id="region">
+			<div class="content-container" >
+				<h1 style="margin-top: 0; margin-bottom: 0.5em">Regional Destribution</h1>
+
+				<div class="intro"  style="margin: 0 auto 1.5em; "></div>
+				<div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
+					<p>
+						From the heat map we can see the regional distribution patterns of the major pollutants. We can tell an overall improvement in air quality by the number of green blocks increasing. 
+					</p>
+					<p style="margin-top: 1em">
+						The distribution of NO2 and O3 have a similar distribution pattern, with southern regions slightly more severe than the northern ones. The PM2.5 rate in eastern regions has been on constant decrease since 2005, yet still remain a high value along the west coast.
+					</p>
+					<p style="margin-top: 1em; color:#b9b9b9">
+						Select a pollutant in the filters, and drag the time slider to show heat map of the average pollution level in the selected year. The values of pollution rates are the percentage above/below EPA national standards. Green means lower than national standards and red means higher.
+					</p>
+				</div>
+
+				<div>
+					<div id="map"></div>
+					<form id="pollutant-select">
+						<input type="radio" name="pollutant" value="co" checked>CO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="pollutant" value="no2">NO<sub>2</sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="pollutant" value="ozone">Ozone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="pollutant" value="pm10">PM<sub>10</sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="pollutant" value="pm25">PM<sub>2.5</sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="pollutant" value="so2">SO<sub>2</sub>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<div id="slider">
+			<input type="range" min="2005" max="2014" id="timeSlider">
+			<br>
+			<div id="slider-label">
+				<label>2005</label>
+				<label>2006</label>
+				<label>2007</label>
+				<label>2008</label>
+				<label>2009</label>
+				<label>2010</label>
+				<label>2011</label>
+				<label>2012</label>
+				<label>2013</label>
+				<label style="margin-right: 0px;">2014</label>
+			</div>
+		</div>
+
+		<section id="season">
+			<div class="content-container" style="width: 90%;">
+
+				<h1 style = "margin-bottom: 1em">Seasonal Change in <strong class="linegraph_title">U.S.</strong> <strong class="heatgrid_year">2005</strong></h1>
+
+				<div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
+				  	<p>
+				  	Some pollutants have a distinct pattern in seasonal distribution. The level of Ozone is higher during spring and summer than other time of the year, largely due to the fact that heat and sunshine are required to produce Ozone. The levels of CO, NO2, and SO2 tend to distribute evenly across months. 
+				  	</p>
+				  	<p style="margin-top: 1em; color:#b9b9b9">
+						Select a state in the selection box on the top-right corner or by directly clicking on the map, and drag the time slider above to show monthly average pollutant values in the given year and state. 
+					</p>
+				</div>
+
+				<div id="heatgrid" class="front" style="margin:auto; width:70%;"></div>
+
+				<div class="main_text" style="width: 70%; margin: -1em auto 1.5em">
+				  	<p>
+				  	From the heat grid we can also see some of the severe pollution instances in the ten year range. The PM10 rate of Navada in Feb, 2014 reached over 10 times the national standard. California, which in general has a higher PM10 and PM2.5 rate than other states, reached its peak value in particle pollutoin in Nov and Dec, 2014. 
+				  	</p>
+				</div>
+
+				<div class="main_text" style="width: 70%; margin: 3em auto 1.5em">
+				  	<p style="margin-top: 1em; color:#b9b9b9"><strong>Notes:</strong></p>
+				 	<p style="color:#b9b9b9">
+						- The data used in our visualizations are retrieved from <a class="in-text_link" href="http://www3.epa.gov/airquality/airdata/ad_data.html">United States Environmental Protection Agency</a>.
+					</p>
+				 	<p style=" color:#b9b9b9">
+						- The percentage value of pollution rates are calculated based on<a class="in-text_link" href="http://www3.epa.gov/ttn/naaqs/criteria.html">EPA National Standards</a>.
+					</p>
+				 	<p style=" color:#b9b9b9">
+						- In the heatmap, missing data are represented by gray color.
+					</p>
+				</div>
+			 </div>
+		</section>
+
+		<section id="ending">
+			<div class="content-container">
+				<footer>All Rights Reserved | &copy; 2015</footer>
+			</div>
+		</section>
+
+		<a href = "#00">
+			<div class = "to-top fade-element">
+			<p>top</p>
+			</div>
+		</a>
 	</div>
-	<div class="nav_links">
-		<ul style="display:inline-block">
-			<li><a
-			 href="#">Select State</a></li>
-
-			 <select id="states" name="states" class="select-style">
-<option value="0">U.S.</option>
-<option value="1">Alabama</option>
-<option value="2">Alaska</option>
-<option value="4">Arizona</option>
-<option value="5">Arkansas</option>
-<option value="6">California</option>
-<option value="8">Colorado</option>
-<option value="9">Connecticut</option>
-<option value="10">Delaware</option>
-<option value="11">District of Columbia</option>
-<option value="12">Florida</option>
-<option value="13">Georgia</option>
-<option value="15">Hawaii</option>
-<option value="16">Idaho</option>
-<option value="17">Illinois</option>
-<option value="18">Indiana</option>
-<option value="19">Iowa</option>
-<option value="20">Kansas</option>
-<option value="21">Kentucky</option>
-<option value="22">Louisiana</option>
-<option value="23">Maine</option>
-<option value="24">Maryland</option>
-<option value="25">Massachusetts</option>
-<option value="26">Michigan</option>
-<option value="27">Minnesota</option>
-<option value="28">Mississippi</option>
-<option value="29">Missouri</option>
-<option value="30">Montana</option>
-<option value="31">Nebraska</option>
-<option value="32">Nevada</option>
-<option value="33">New Hampshire</option>
-<option value="34">New Jersey</option>
-<option value="35">New Mexico</option>
-<option value="36">New York</option>
-<option value="37">North Carolina</option>
-<option value="38">North Dakota</option>
-<option value="39">Ohio</option>
-<option value="40">Oklahoma</option>
-<option value="41">Oregon</option>
-<option value="42">Pennsylvania</option>
-<option value="44">Rhode Island</option>
-<option value="45">South Carolina</option>
-<option value="46">South Dakota</option>
-<option value="47">Tennessee</option>
-<option value="48">Texas</option>
-<option value="49">Utah</option>
-<option value="50">Vermont</option>
-<option value="51">Virginia</option>
-<option value="53">Washington</option>
-<option value="54">West Virginia</option>
-<option value="55">Wisconsin</option>
-<option value="56">Wyoming</option>
-</select>
-		</ul>
-	</div>
-	</nav>
-	</div>
-</header>
-
-<!-- ======================================== -->
-<!-- contents-->
-<!-- ======================================== -->
-
-<div id="contents" class="text-center">
-
-<div id= "vis_display">
-<div style="z-index: -999; position: fixed; top: 0"></div>
-	<div class="welcome">
-	<h1 class="homequote" style="color: #96cab3; font-weight: bold;">Visualizing Air Quality in U.S.</h1>
-	<p class="caption" style = "color: #a0a0a0; font-size: 1.5em" >Xinyu Sheng, Weikai Zhang, Mengtian Zhang</p>
-
-	</div>
-</div>
-
-<!-- ======================================== -->
-<!-- CHART 1-->
-<!-- ======================================== -->
-<section id="overview">
-<div class="content-container">
-
-<div class="content-container">
-	<h1>All Pollutants in <strong class="linegraph_title">U.S.</strong></h1>
-</div>
-<div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
-	<p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-	The last ten years has witnessed the continuous improvement of air quality in the U.S. We measure the level of pollution by a certain pollutant’s percentage value above / below the National standard. 
-
-	<p style="margin-top: 1em">
-	On national average, almost all pollutants are under the national standard over the past ten years. Most pollutants are gradually decreasing through time (except PM10, which has an over 10% increase since 2009).
-	</p>
-
-	<p style="margin-top: 1em; color:#b9b9b9">
-	You can interact with the line graph to further explore the overview pollutant rate in specific states. Select the state in the selection box on the top right. Click on the legends to filter out sets of pollutants.
-	</p>
-
-
-</div>
-
-
-<div id="chart1" style="margin:0 auto; width:75%"></div>
-
-<div class="main_text" style="width: 70%; margin: -1em auto 1.5em">
-	<p style="margin-top: 1em">
-	Down to the state level, we can see some prominent figures in pollution levels. For example, The annual average PM10 value in Texas reached over 220% above national standard, which was presumably due to the tornadoes raising particles in the air. Hawaii has prominent and highly variant SO2 rates, which results from the frequent volcanic activities specific to the region.
-	</p>
-</div>
-
-</div>
-</section>
-
-<section id="region">
-<div class="content-container" >
-<h1 style="margin-top: 0; margin-bottom: 0.5em">Regional Destribution</h1>
-
-<div class="intro"  style="margin: 0 auto 1.5em; ">
-
-</div>
-	<div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
-<p>
-From the heat map we can see the regional distribution patterns of the major pollutants. We can tell an overall improvement in air quality by the number of green blocks increasing. 
-</p>
-<p style="margin-top: 1em">
-The distribution of NO2 and O3 have a similar distribution pattern, with southern regions slightly more severe than the northern ones. The PM2.5 rate in eastern regions has been on constant decrease since 2005, yet still remain a high value along the west coast.
-</p>
-<p style="margin-top: 1em; color:#b9b9b9">
-Select a pollutant in the filters, and drag the time slider to show heat map of the average pollution level in the selected year. The values of pollution rates are the percentage above/below EPA national standards. Green means lower than national standards and red means higher.
-</p>
-	</div>
-
-<div>
-	<div id="map"></div>
-	<form id="pollutant-select">
-		<input type="radio" name="pollutant" value="co" checked>CO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="pollutant" value="no2">NO<sub>2</sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="pollutant" value="ozone">Ozone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="pollutant" value="pm10">PM<sub>10</sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="pollutant" value="pm25">PM<sub>2.5</sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="pollutant" value="so2">SO<sub>2</sub>
-	</form>
-</div>
-
-
-
-</div>
-</section>
-
-<div id="slider">
-	<input type="range" min="2005" max="2014" id="timeSlider">
-	<br>
-	<div id="slider-label">
-		<label>2005</label>
-		<label>2006</label>
-		<label>2007</label>
-		<label>2008</label>
-		<label>2009</label>
-		<label>2010</label>
-		<label>2011</label>
-		<label>2012</label>
-		<label>2013</label>
-		<label style="margin-right: 0px;">2014</label>
-	</div>
-</div>
-
-<section id="season">
-<div class="content-container" style="width: 90%;">
-
-<h1 style = "margin-bottom: 1em">Seasonal Change in <strong class="linegraph_title">U.S.</strong> <strong class="heatgrid_year">2005</strong></h1>
-
-<div class="main_text" style="width: 70%; margin: 0 auto 1.5em">
-  <p>
-  Some pollutants have a distinct pattern in seasonal distribution. The level of Ozone is higher during spring and summer than other time of the year, largely due to the fact that heat and sunshine are required to produce Ozone. The levels of CO, NO2, and SO2 tend to distribute evenly across months. 
-  </p>
-  <p style="margin-top: 1em; color:#b9b9b9">
-Select a state in the selection box on the top-right corner or by directly clicking on the map, and drag the time slider above to show monthly average pollutant values in the given year and state. 
-</p>
-
-</div>
-
-<div id="heatgrid" class="front" style="margin:auto; width:70%;"></div>
-
-<div class="main_text" style="width: 70%; margin: -1em auto 1.5em">
-  <p>
-  From the heat grid we can also see some of the severe pollution instances in the ten year range. The PM10 rate of Navada in Feb, 2014 reached over 10 times the national standard. California, which in general has a higher PM10 and PM2.5 rate than other states, reached its peak value in particle pollutoin in Nov and Dec, 2014. 
-  </p>
-</div>
-
-
-
-<div class="main_text" style="width: 70%; margin: 3em auto 1.5em">
-  <p style="margin-top: 1em; color:#b9b9b9">
-<strong>Notes:</strong>
-</p>
- <p style="color:#b9b9b9">
-- The data used in our visualizations are retrieved from <a class="in-text_link" href="http://www3.epa.gov/airquality/airdata/ad_data.html">United States Environmental Protection Agency</a>.
-</p>
- <p style=" color:#b9b9b9">
-- The percentage value of pollution rates are calculated based on<a class="in-text_link" href="http://www3.epa.gov/ttn/naaqs/criteria.html">EPA National Standards</a>.
-</p>
- <p style=" color:#b9b9b9">
-- In the heatmap, missing data are represented by gray color.
-</p>
-</div>
-
-
-
- </div>
-</section>
-
-<section id="ending">
-<div class="content-container">
-
-<footer>All Rights Reserved | &copy; 2015</footer>
-</div>
-</section>
-
-<a href = "#00">
-	<div class = "to-top fade-element">
-	<p>top</p>
-	</div>
-</a>
-
-</div>
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
 	<script src="http://d3js.org/topojson.v1.min.js"></script>
-	<script src="build/nv.d3.js"></script>
+	<script src="nvd3/nv.d3.js"></script>
 
 	<!-- VIS -->
-	<script src="map.js"></script>
+	<script src="scripts/map.js"></script>
 
 </body>
 </html>
