@@ -1,13 +1,13 @@
-d3.json("../data/us.json", function(error, us) {
+d3.json("data/us.json", function(error, us) {
   if (error) throw error;
 
-  d3.json("../data/pollution_data.json", function(error, pollutant) {
+  d3.json("data/pollution_data.json", function(error, pollutant) {
     if (error) throw error;
 
-    d3.csv("../data/pollution_data_monthly.csv", function(error, heatData) {
+    d3.csv("data/pollution_data_monthly.csv", function(error, heatData) {
       if (error) throw error;
       
-      d3.json("../data/pollution_data.json", function(error, data){
+      d3.json("data/pollution_data.json", function(error, data){
         if (error) throw error;
       
       //scroll sticky selector
